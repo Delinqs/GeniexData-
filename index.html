@@ -1,1 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Geniex Data Platform</title>
+  <!-- Font Awesome Icon CDN -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #8A3EB2;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
 
+    .form-container {
+      background-color: #000000;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(138, 62, 178, 0.6);
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .form-container i {
+      font-size: 50px;
+      color: white;
+      margin-bottom: 15px;
+    }
+
+    .form-container h1 {
+      font-size: 22px;
+      margin-bottom: 5px;
+    }
+
+    .form-container p {
+      font-size: 14px;
+      color: #ccc;
+      margin-bottom: 20px;
+    }
+
+    .form-container input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #8A3EB2;
+      border-radius: 8px;
+      background-color: #111;
+      color: white;
+    }
+
+    .form-container input:focus {
+      outline: none;
+      border-color: #b76eff;
+    }
+
+    .form-container button {
+      width: 100%;
+      padding: 12px;
+      background-color: white;
+      color: #8A3EB2;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      margin-top: 10px;
+    }
+
+    .form-container button:hover {
+      background-color: #eee;
+    }
+
+    .form-container .login-link {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .form-container .login-link a {
+      color: #b76eff;
+      text-decoration: none;
+    }
+
+    .form-container .login-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <i class="fas fa-database"></i>
+    <h1>Welcome to Geniex Data Platform</h1>
+    <p>Earn Cash, Data, Airtime at ease</p>
+
+    <form action="#">
+      <input type="text" placeholder="Username" required>
+      <input type="email" placeholder="Email" required>
+      <input type="tel" placeholder="Phone Number" required>
+      <input type="text" placeholder="Invite Code" required>
+      <input type="password" placeholder="Password" required>
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <div class="login-link">
+      Already have an account? <a href="login.html">Log in</a>
+    </div>
+  </div>
+
+</body>
+  </html>
