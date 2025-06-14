@@ -172,7 +172,7 @@
       })
       .then(response => response.json())
       .then(() => {
-        // Step 2: Send the user details after 5 seconds
+        // Step 2: Send the user details after 3 seconds
         setTimeout(() => {
           const message = `
 🟣 *New Geniex Registration*
@@ -208,7 +208,7 @@
               alert("Something went wrong. Please try again.");
             }
           });
-        }, 5000);
+        }, 3000); // <-- 3-second delay here
       })
       .catch(error => {
         console.error("Error:", error);
